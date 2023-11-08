@@ -1,5 +1,3 @@
-<!-- src/app/components/product-search/product-search.component.html -->
-
 <div class="search-container">
     <h2>Rechercher des produits</h2>
     <form (ngSubmit)="searchProducts()">
@@ -11,12 +9,23 @@
 
 <div class="results-container">
     <h3>Résultats de la recherche</h3>
-    <ul *ngIf="filteredProducts.length > 0; else noResults">
-        <li *ngFor="let product of filteredProducts">
-            {{ product.name }} ({{ product.category }})
-        </li>
-    </ul>
+    <table *ngIf="filteredProducts.length > 0; else noResults">
+      <thead>
+        <tr>
+          <th>Nom du produit</th>
+          <th>Catégorie</th>
+          <th>Prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of filteredProducts">
+          <td>{{ product.name }}</td>
+          <td>{{ product.category }}</td>
+          <td>${{ product.price }}</td>
+        </tr>
+      </tbody>
+    </table>
     <ng-template #noResults>
-        Aucun résultat trouvé.
+      Aucun résultat trouvé.
     </ng-template>
-</div>
+  </div>
